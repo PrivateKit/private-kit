@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   Linking,
   View,
   Text,
@@ -26,7 +25,6 @@ import LocationServices from '../services/LocationService';
 import greenMarker from '../assets/images/user-green.png';
 import backArrow from '../assets/images/backArrow.png';
 import infoIcon from '../assets/images/info.png';
-
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 
@@ -363,7 +361,7 @@ function OverlapScreen() {
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}>
-                      <Text style={[styles.okbtn]}>{'OK'}</Text>
+                      <Text style={[styles.okButton]}>{'OK'}</Text>
                     </View>
                   </View>
                 </TouchableHighlight>
@@ -471,14 +469,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 35,
   },
-  okbtn: {
+  okButton: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 18,
     lineHeight: 19,
     letterSpacing: 0,
     marginTop: 15,
     textAlign: 'center',
-    color: '#ffffff',
+    color: 'white',
   },
 
   buttonText: {
@@ -487,7 +485,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     letterSpacing: 0,
     textAlign: 'center',
-    color: '#ffffff',
+    color: 'white',
   },
   mainText: {
     fontSize: 18,
@@ -628,9 +626,6 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     //fontWeight: CustomFont.fontWeightMontserrat500,
     color: '#000',
-  },
-  bullet: {
-    width: 10,
   },
 });
 
