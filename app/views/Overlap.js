@@ -586,15 +586,6 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
   overlay: {
     position: 'absolute',
     top: 0,
@@ -602,30 +593,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     backgroundColor: '#06273F80',
-  },
-  buttonLarge_appThemestroke: {
-    marginTop: 0,
-    width: 230,
-    alignSelf: 'center',
-    marginBottom: 30,
-    height: 48,
-    borderWidth: 1,
-    borderColor: '#57A3e2',
-    justifyContent: 'center',
-    borderRadius: 24,
-  },
-  buttonStyle: {
-    width: '50%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonTxt: {
-    fontSize: 12,
-    textAlign: 'center',
-    fontFamily: 'OpenSans-Regular',
-    //fontWeight: CustomFont.fontWeightMontserrat500,
-    color: '#000',
   },
 });
 
