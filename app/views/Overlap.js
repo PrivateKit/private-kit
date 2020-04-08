@@ -526,7 +526,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: 60,
     paddingTop: 21,
-    marginStart: 40,
+    marginStart: 25,
     alignItems: 'center',
     alignSelf: 'flex-end',
     position: 'relative',
