@@ -1,10 +1,6 @@
 {
   "overlap_title": "Check Overlap",
-<<<<<<< HEAD
   "overlap_para_1": "\u27A2 The green trail represents your location history\n\n\u27A2 The red circles represent the public dataset in the range of 100KMs around you",
-=======
-  "overlap_para_1": "\u27A2 The green trail represents your location history\n\n\u27A2 The light purple circles represent the public dataset",
->>>>>>> 6940d7249c9b509c1ef6cc1021f73006da53a80b
   "show_overlap": "Click to view the public dataset",
   "loading_public_data": "loading data...",
   "overlap_no_results_button_label": "Public Data Loaded",
