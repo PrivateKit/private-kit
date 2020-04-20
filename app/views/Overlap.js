@@ -318,10 +318,10 @@ function OverlapScreen(props) {
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
+                  console.log("Modal has been closed");
                 }}
               >
-                <View style={[styles.overlay, { flex: 1, alignItems: 'center', justifyContent: 'center' }]}>
+                <View style={[styles.overlay, { alignItems: 'center', justifyContent: 'center' }]}>
                   <View style={styles.modalView}>
 
                     <TouchableHighlight
@@ -420,7 +420,6 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-    ...StyleSheet.absoluteFillObject
   },
   description: {
     flex: 0.5,
@@ -479,14 +478,12 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   mapFooter:{  
-  flex:1,
-  position:'relative',
+  position:'absolute',
   justifyContent:"flex-end",
+  bottom:30,
   alignSelf:"center",
-  marginBottom:35
   },
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10
