@@ -82,7 +82,7 @@ function OverlapScreen(props) {
   const [initialRegion, setInitialRegion] = useState(INITIAL_REGION);
   const { navigate } = useNavigation();
   const mapView = useRef();
-
+  const [tracksViewChanges, settracksViewChanges] = useState(true);
   try {
     props.navigation.setOptions({
       headerShown: false,
@@ -290,6 +290,10 @@ function OverlapScreen(props) {
       return () => {};
     }, []),
   );
+  useEffect(() => {
+    alert(tracksViewChanges);
+    settracksViewChanges(!tracksViewChanges)
+    }, [circles]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -387,8 +391,10 @@ function OverlapScreen(props) {
               //   strokeWidth={0}
               // />
               <Marker
+              key={circle.key}
               coordinate={circle.center}            
-              icon={mapMarker} />
+              icon={mapMarker} 
+              tracksViewChanges ={tracksViewChanges}/>
           
             ))}
           </MapView>
