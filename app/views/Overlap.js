@@ -291,7 +291,6 @@ function OverlapScreen(props) {
     }, []),
   );
   useEffect(() => {
-    alert(tracksViewChanges);
     settracksViewChanges(!tracksViewChanges)
     }, [circles]);
 
@@ -371,6 +370,7 @@ function OverlapScreen(props) {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={customMapStyles}>
+            
             {markers.map(marker => (
               <Marker
                 key={marker.key}
@@ -378,6 +378,7 @@ function OverlapScreen(props) {
                 title={marker.title}
                 description={marker.description}
                 image={greenMarker}
+                
               />
             ))}
             {circles.map(circle => (
