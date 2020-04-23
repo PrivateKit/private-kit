@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView, BackHandler } from 'react-native';
-
 import languages from './../locales/languages';
-import { isPlatformiOS } from './../Util';
 import Colors from '../constants/colors';
 import fontFamily from './../constants/fonts';
 import team from './../assets/svgs/team';
@@ -73,12 +71,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.INTRO_WHITE_BG,
     paddingHorizontal: 26,
     flex: 1,
-  },
-  section: {
-    flexDirection: 'column',
-    width: '87.5%',
-    alignSelf: 'center',
-    backgroundColor: Colors.WHITE,
   },
   aboutSectionIconTeam: {
     width: 40.38,

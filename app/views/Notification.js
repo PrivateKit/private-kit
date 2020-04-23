@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
-  Image,
   Dimensions,
   TouchableOpacity,
   BackHandler,
   ScrollView,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import packageJson from '../../package.json';
-
 import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import backArrow from './../assets/images/backArrow.png';
 import languages from './../locales/languages';
-import AsyncStorage from '@react-native-community/async-storage';
-import { GetStoreData, SetStoreData } from '../helpers/General';
-import {
-  VictoryBar,
-  VictoryAxis,
-  VictoryChart,
-  VictoryTooltip,
-} from 'victory-native';
+import { GetStoreData } from '../helpers/General';
+import { VictoryBar, VictoryAxis, VictoryChart } from 'victory-native';
 import Colors from '../constants/colors';
 import NavigationBarWrapper from '../components/NavigationBarWrapper';
 import { CROSSED_PATHS } from '../constants/storage';
@@ -255,23 +243,10 @@ class NotificationScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   main: {
     flex: 1,
     paddingVertical: 20,
     width: '100%',
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
   },
   buttonTouchable: {
     borderRadius: 12,
@@ -307,22 +282,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: fontFamily.primaryRegular,
     marginLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
-  notificationsHeader: {
-    backgroundColor: '#665eff',
-    width: '100%',
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-  },
-  notificationsHeaderText: {
-    color: colors.WHITE,
-    fontSize: 18,
-    lineHeight: 22,
-    fontFamily: fontFamily.primaryBold,
   },
   notificationView: {
     width: '100%',

@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   BackHandler,
   Modal,
-  Image,
   TouchableHighlight,
+  Alert,
 } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -20,7 +20,6 @@ import greenMarker from '../assets/images/user-green.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
-
 import { PUBLIC_DATA_URL } from '../constants/authorities';
 import { LOCATION_DATA } from '../constants/storage';
 
@@ -71,7 +70,7 @@ function distance(lat1, lon1, lat2, lon2) {
 }
 
 function OverlapScreen(props) {
-  const [region, setRegion] = useState({});
+  //const [region, setRegion] = useState({});
   const [markers, setMarkers] = useState([]);
   const [circles, setCircles] = useState([]);
   const [showButton, setShowButton] = useState({
@@ -80,7 +79,7 @@ function OverlapScreen(props) {
   });
   const [modalVisible, setModalVisible] = useState(false);
   const [initialRegion, setInitialRegion] = useState(INITIAL_REGION);
-  const { navigate } = useNavigation();
+  //const { navigate } = useNavigation();
   const mapView = useRef();
 
   try {
@@ -210,8 +209,8 @@ function OverlapScreen(props) {
 
   async function parseCSV(records) {
     try {
-      const latestLat = initialRegion.latitude;
-      const latestLong = initialRegion.longitude;
+      /* const latestLat = initialRegion.latitude;
+      const latestLong = initialRegion.longitude; */
       const rows = records.split('\n');
       const parsedRows = {};
 
@@ -274,7 +273,7 @@ function OverlapScreen(props) {
   function backToMain() {
     props.navigation.goBack();
   }
-  function setVisible(){
+  function setVisible() {
     setModalVisible(true);
   }
 
@@ -306,61 +305,72 @@ function OverlapScreen(props) {
       <NavigationInfoBarWrapper
         title={languages.t('label.overlap_title')}
         onBackPress={backToMain.bind()}
-       onInfoTapped={setVisible.bind()}
-      >
+        onInfoTapped={setVisible.bind()}>
         <View style={styles.main}>
-          
-        {
-         modalVisible &&
+          {modalVisible && (
             <View style={styles.centeredView}>
               <Modal
-                animationType="slide"
+                animationType='slide'
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                  console.log("Modal has been closed");
-                }}
-              >
-                <View style={[styles.overlay, { alignItems: 'center', justifyContent: 'center' }]}>
+                  Alert.alert('Modal has been closed.');
+                }}>
+                <View
+                  style={[
+                    styles.overlay,
+                    { flex: 1, alignItems: 'center', justifyContent: 'center' },
+                  ]}>
                   <View style={styles.modalView}>
-
                     <TouchableHighlight
                       style={{ ...styles.openButton }}
                       onPress={() => {
                         setModalVisible(!modalVisible);
-                      }}
-                    >
-
+                      }}>
                       <View style={styles.footer}>
-                        <Text style={styles.sectionDescription, { textAlign: 'left', paddingTop: 15, color: '#fff' }}>
+                        <Text
+                          style={
+                            (styles.sectionDescription,
+                            {
+                              textAlign: 'left',
+                              paddingTop: 15,
+                              color: '#fff',
+                            })
+                          }>
                           {languages.t('label.overlap_para_1')}
                         </Text>
-
 
                         <Text
                           style={[
                             styles.sectionFooter,
-                            { textAlign: 'center', paddingTop: 15, color: '#63beff' },
+                            {
+                              textAlign: 'center',
+                              paddingTop: 15,
+                              color: '#63beff',
+                            },
                           ]}
                           onPress={() =>
-                            Linking.openURL('https://github.com/beoutbreakprepared/nCoV2019')
+                            Linking.openURL(
+                              'https://github.com/beoutbreakprepared/nCoV2019',
+                            )
                           }>
                           {languages.t('label.nCoV2019_url_info')}{' '}
                         </Text>
-                        <View style={{
-                          flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
-                        }}>
-                          <Text style={[styles.okButton]}>{"OK"}</Text>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <Text style={[styles.okButton]}>{'OK'}</Text>
                         </View>
-
                       </View>
                     </TouchableHighlight>
                   </View>
                 </View>
               </Modal>
-            </View> 
-       }
-        
+            </View>
+          )}
 
           <MapView
             ref={mapView}
@@ -397,7 +407,6 @@ function OverlapScreen(props) {
                   {languages.t(showButton.text)}
                 </Text>
               </TouchableOpacity>
-             
             </View>
           }
         </View>
@@ -407,19 +416,12 @@ function OverlapScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: fontFamily.primaryRegular,
-  },
   main: {
     flex: 1,
   },
   map: {
     flex: 1,
+    ...StyleSheet.absoluteFillObject,
   },
   description: {
     flex: 0.5,
@@ -441,23 +443,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-  headerContainer: {
-    flexDirection: 'row',
-    height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(189, 195, 199,0.6)',
-    alignItems: 'center',
-  },
-  backArrowTouchable: {
-    width: 60,
-    height: 60,
-    paddingTop: 21,
-    paddingLeft: 20,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
-  },
   sectionDescription: {
     fontSize: 16,
     lineHeight: 24,
@@ -477,36 +462,38 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingBottom: 5,
   },
-  mapFooter:{  
-  position:'absolute',
-  justifyContent:"flex-end",
-  bottom:30,
-  alignSelf:"center",
+  mapFooter: {
+    flex: 1,
+    position: 'relative',
+    justifyContent: 'flex-end',
+    alignSelf: 'center',
+    marginBottom: 35,
   },
   centeredView: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 10,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
   },
   openButton: {
-    backgroundColor: "#333333",
+    backgroundColor: '#333333',
     borderRadius: 10,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   overlay: {
     position: 'absolute',
@@ -514,12 +501,12 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: "#06273F80",
+    backgroundColor: '#06273F80',
   },
-  okButton:{
-    paddingTop:5,
-    color:"white"
-  }
+  okButton: {
+    paddingTop: 5,
+    color: 'white',
+  },
 });
 
 const customMapStyles = [

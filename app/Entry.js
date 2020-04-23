@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { SafeAreaView } from 'react-native';
 import LocationTracking from './views/LocationTracking';
 import NewsScreen from './views/News';
 import ExportScreen from './views/Export';
@@ -20,8 +18,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
-
-import { GetStoreData, SetStoreData } from './helpers/General';
+import { GetStoreData } from './helpers/General';
 import { PARTICIPATE } from './constants/storage';
 
 const Stack = createStackNavigator();

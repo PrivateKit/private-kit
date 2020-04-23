@@ -1,35 +1,9 @@
 import React, { Component } from 'react';
-
-import {
-  View,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-} from 'react-native';
-import {
-  check,
-  request,
-  PERMISSIONS,
-  RESULTS,
-  checkNotifications,
-  requestNotifications,
-} from 'react-native-permissions';
-import languages from '../locales/languages';
-import ButtonWrapper from '../components/ButtonWrapper';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import Colors from '../constants/colors';
-import { SetStoreData } from '../helpers/General';
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  Polyline,
-  Circle,
-} from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Polyline, Circle } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import { isPlatformiOS } from './../Util';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { SvgXml } from 'react-native-svg';
-import fontFamily from '../constants/fonts';
 import LocationServices, { LocationData } from '../services/LocationService';
 
 const InitialRegion = {
