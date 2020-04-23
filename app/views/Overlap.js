@@ -20,7 +20,7 @@ import greenMarker from '../assets/images/user-green.png';
 import languages from '../locales/languages';
 import CustomCircle from '../helpers/customCircle';
 import fontFamily from '../constants/fonts';
-
+import mapMarker from '../assets/images/circle.png';
 import { PUBLIC_DATA_URL } from '../constants/authorities';
 import { LOCATION_DATA } from '../constants/storage';
 
@@ -82,7 +82,7 @@ function OverlapScreen(props) {
   const [initialRegion, setInitialRegion] = useState(INITIAL_REGION);
   const { navigate } = useNavigation();
   const mapView = useRef();
-
+  const [tracksViewChanges, settracksViewChanges] = useState(true);
   try {
     props.navigation.setOptions({
       headerShown: false,
@@ -290,6 +290,9 @@ function OverlapScreen(props) {
       return () => {};
     }, []),
   );
+  useEffect(() => {
+    settracksViewChanges(!tracksViewChanges)
+    }, [circles]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackPress);
@@ -367,6 +370,7 @@ function OverlapScreen(props) {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={customMapStyles}>
+            
             {markers.map(marker => (
               <Marker
                 key={marker.key}
@@ -374,17 +378,25 @@ function OverlapScreen(props) {
                 title={marker.title}
                 description={marker.description}
                 image={greenMarker}
+                
               />
             ))}
             {circles.map(circle => (
-              <CustomCircle
-                key={circle.key}
-                center={circle.center}
-                radius={circle.radius}
-                fillColor='rgba(245, 19, 19, 0.4)'
-                zIndex={2}
-                strokeWidth={0}
-              />
+        // Commented for testing map performance issue is due to plotting custom circle
+              // <CustomCircle
+              //   key={circle.key}
+              //   center={circle.center}
+              //   radius={circle.radius}
+              //   fillColor='rgba(245, 19, 19, 0.4)'
+              //   zIndex={2}
+              //   strokeWidth={0}
+              // />
+              <Marker
+              key={circle.key}
+              coordinate={circle.center}            
+              icon={mapMarker} 
+              tracksViewChanges ={tracksViewChanges}/>
+          
             ))}
           </MapView>
           {
