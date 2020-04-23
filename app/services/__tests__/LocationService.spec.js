@@ -1,4 +1,4 @@
-import LocationService, { LocationData } from '../LocationService';
+import { LocationData } from '../LocationService';
 import * as General from '../../helpers/General';
 
 function mockGetStoreData(data) {

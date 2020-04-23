@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   AppState,
-  SafeAreaView,
   StyleSheet,
   Linking,
   View,
@@ -9,17 +8,10 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  ScrollView,
   BackHandler,
   ImageBackground,
   StatusBar,
 } from 'react-native';
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
 import BackgroundImage from './../assets/images/launchScreenBackground.png';
 import BackgroundImageAtRisk from './../assets/images/backgroundAtRisk.png';
 import Colors from '../constants/colors';
@@ -39,8 +31,6 @@ import {
   RESULTS,
   openSettings,
 } from 'react-native-permissions';
-import foreArrow from './../assets/images/foreArrow.png';
-
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -50,7 +40,7 @@ import StateNoContact from './../assets/svgs/stateNoContact';
 import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
-import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
+import { PARTICIPATE } from '../constants/storage';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -500,32 +490,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontFamily.primaryLight,
     marginBottom: '8%',
-  },
-  mayoInfoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  mayoInfoContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignContent: 'flex-end',
-    padding: 20,
-  },
-  mainMayoHeader: {
-    textAlign: 'left',
-    color: Colors.MISCHKA,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryBold,
-  },
-  mainMayoSubtext: {
-    textAlign: 'left',
-    color: Colors.MISCHKA,
-    fontSize: 18,
-    fontFamily: fontFamily.primaryRegular,
-  },
-  arrowContainer: {
-    alignSelf: 'center',
-    paddingRight: 20,
   },
 });
 

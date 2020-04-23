@@ -4,30 +4,25 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
   TouchableOpacity,
   BackHandler,
   StatusBar,
   ScrollView,
-  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
-// import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import { GetStoreData } from '../helpers/General';
 import { timeSincePoint } from '../helpers/convertPointsToString';
 import LocationServices, { LocationData } from '../services/LocationService';
-import backArrow from './../assets/images/backArrow.png';
 import { isPlatformiOS } from './../Util';
 import LinearGradient from 'react-native-linear-gradient';
 
 import Colors from '../constants/colors';
 import languages from './../locales/languages';
-import licenses from './../assets/LICENSE.json';
 import { SvgXml } from 'react-native-svg';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
@@ -176,7 +171,6 @@ function ExportScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
   topSafeAreaContainer: {
     flex: 0,
     backgroundColor: Colors.VIOLET_BUTTON,
@@ -206,12 +200,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 26,
   },
-  row: {
-    flexDirection: 'row',
-    color: Colors.PRIMARY_TEXT,
-    alignItems: 'flex-start',
-  },
-
   exportSectionTitles: {
     color: Colors.WHITE,
     fontSize: 26,
@@ -225,7 +213,6 @@ const styles = StyleSheet.create({
     marginTop: 22,
     fontFamily: fontFamily.primaryRegular,
   },
-
   exportButton: {
     backgroundColor: Colors.WHITE,
     flexDirection: 'row',

@@ -23,7 +23,6 @@ export default class NativePicker extends Component {
   render() {
     // iOS and Android Pickers behave differently, handled below
     if (Platform.OS === 'android') {
-
       const selectedItem = this.props.items.find(
         i => i.value === this.props.value,
       );
@@ -35,7 +34,6 @@ export default class NativePicker extends Component {
             onPress={() => this.setState({ modalVisible: true })}>
             <TextInput
               style={[styles.touchableTrigger, styles.touchableText]}
-
               editable={false}
               placeholder='Select language'
               onChangeText={searchString => {
@@ -129,32 +127,6 @@ export default class NativePicker extends Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-  imageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '3%',
-  },
-  descriptionContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  descriptionIconContainer: {
-    alignSelf: 'center',
-  },
-  descriptionIcon: {
-    width: 10,
-    height: 10,
-    resizeMode: 'contain',
-  },
-  descriptionTextContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginLeft: '5%',
-  },
   touchableTrigger: {
     backgroundColor: '#ffffff',
     opacity: 0.4,
@@ -168,5 +140,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-
 });

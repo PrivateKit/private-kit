@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import packageJson from '../../package.json';
-
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import languages from './../locales/languages';

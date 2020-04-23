@@ -7,8 +7,6 @@ import {
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
-
-import colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
 import WebView from 'react-native-webview';
 import { SearchAndImport } from '../helpers/GoogleTakeOutAutoImport';
@@ -108,13 +106,6 @@ class ImportScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   subHeaderTitle: {
     textAlign: 'center',
     fontWeight: 'bold',

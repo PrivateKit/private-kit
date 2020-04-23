@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
@@ -27,7 +26,6 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 import colors from '../constants/colors';
 import Colors from '../constants/colors';
 import fontFamily from '../constants/fonts';
-import backArrow from './../assets/images/backArrow.png';
 import closeIcon from './../assets/images/closeIcon.png';
 import saveIcon from './../assets/images/saveIcon.png';
 import languages from '../locales/languages';
@@ -358,14 +356,6 @@ class ChooseProviderScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Container covers the entire screen
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    color: colors.PRIMARY_TEXT,
-    backgroundColor: colors.WHITE,
-  },
   main: {
     flex: 2,
     flexDirection: 'column',
@@ -383,12 +373,6 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '96%',
     alignSelf: 'center',
-    backgroundColor: colors.WHITE,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    color: colors.PRIMARY_TEXT,
     backgroundColor: colors.WHITE,
   },
   value: {
@@ -411,32 +395,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
-
-  buttonTouchable: {
-    borderRadius: 12,
-    backgroundColor: '#665eff',
-    height: 52,
-    alignSelf: 'center',
-    width: width * 0.7866,
-    marginTop: 30,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: fontFamily.primaryBold,
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: 0,
-    textAlign: 'center',
-    color: '#ffffff',
-  },
   headerTitle: {
     fontSize: 24,
     fontFamily: fontFamily.primaryBold,
     color: Colors.VIOLET_TEXT,
-  },
-  backArrow: {
-    height: 18,
-    width: 18.48,
   },
   sectionDescription: {
     fontSize: 18,
