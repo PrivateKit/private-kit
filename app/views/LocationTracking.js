@@ -51,6 +51,7 @@ import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
 import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
+import MagnetometerServices from '../services/MagnetometerService';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -115,12 +116,14 @@ class LocationTracking extends Component {
         switch (result) {
           case RESULTS.GRANTED:
             LocationServices.start();
+            MagnetometerServices.start();
             this.checkIfUserAtRisk();
             return;
           case RESULTS.UNAVAILABLE:
           case RESULTS.BLOCKED:
             console.log('NO LOCATION');
             LocationServices.stop();
+            MagnetometerServices.start();
             this.setState({ currentState: StateEnum.UNKNOWN });
         }
       })

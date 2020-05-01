@@ -1,0 +1,1 @@
+export const MAGNETOMETER_TIMER = 5000 * 10;
