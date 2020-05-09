@@ -21,6 +21,7 @@ import fontFamily from '../constants/fonts';
 import { GetStoreData } from '../helpers/General';
 import { timeSincePoint } from '../helpers/convertPointsToString';
 import LocationServices, { LocationData } from '../services/LocationService';
+import MagnetometerServices, { MagnetometerData } from '../services/MagnetometerService';
 import backArrow from './../assets/images/backArrow.png';
 import { isPlatformiOS } from './../Util';
 import LinearGradient from 'react-native-linear-gradient';
@@ -71,11 +72,12 @@ function ExportScreen(props) {
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
+      let magnetometerData = await new MagnetometerData().getMagnetometerData();
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
       var options = {};
-      var jsonData = JSON.stringify(locationData);
+      var jsonData = JSON.stringify(locationData) + JSON.stringify(magnetometerData);
       const title = 'PrivateKit.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
