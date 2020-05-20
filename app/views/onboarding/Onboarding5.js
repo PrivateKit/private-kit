@@ -26,7 +26,7 @@ import { SetStoreData } from '../../helpers/General';
 import { isPlatformiOS } from './../../Util';
 import { SvgXml } from 'react-native-svg';
 import fontFamily from '../../constants/fonts';
-import { PARTICIPATE } from '../../constants/storage';
+import { PARTICIPATE, ONBOARDING_DONE } from '../../constants/storage';
 
 const width = Dimensions.get('window').width;
 
@@ -114,12 +114,11 @@ class Onboarding extends Component {
     if (isPlatformiOS()) {
       this.setState({
         bluetoothPermission: PermissionStatusEnum.UNKNOWN,
-      })
-    }
-    else {
+      });
+    } else {
       this.setState({
         bluetoothPermission: PermissionStatusEnum.UNKNOWN,
-      })
+      });
     }
   }
 
@@ -141,10 +140,10 @@ class Onboarding extends Component {
     });
   }
 
-  requestBLE () {
+  requestBLE() {
     this.setState({
       bluetoothPermission: PermissionStatusEnum.GRANTED,
-    })
+    });
   }
 
   requestLocation() {
@@ -200,6 +199,7 @@ class Onboarding extends Component {
       this.requestBLE();
     } else {
       SetStoreData(PARTICIPATE, 'true'); // replaces "start" button
+      SetStoreData(ONBOARDING_DONE, 'true');
       this.props.navigation.replace('LocationTrackingScreen');
     }
   }
@@ -217,7 +217,11 @@ class Onboarding extends Component {
   }
 
   getTitleTextView() {
-    if (!this.isLocationChecked() || !this.isNotificationChecked() || !this.isBLEChecked()) {
+    if (
+      !this.isLocationChecked() ||
+      !this.isNotificationChecked() ||
+      !this.isBLEChecked()
+    ) {
       return <Text style={styles.headerText}>{this.getTitleText()}</Text>;
     } else {
       return <Text style={styles.bigHeaderText}>{this.getTitleText()}</Text>;
@@ -271,9 +275,8 @@ class Onboarding extends Component {
         />
         <View style={styles.divider}></View>
       </>
-    )
+    );
   }
-
 
   getButtonText() {
     if (!this.isLocationChecked()) {

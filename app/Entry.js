@@ -22,7 +22,7 @@ import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
-import { PARTICIPATE } from './constants/storage';
+import { ONBOARDING_DONE } from './constants/storage';
 
 const Stack = createStackNavigator();
 
@@ -35,11 +35,11 @@ class Entry extends Component {
   }
 
   componentDidMount() {
-    GetStoreData(PARTICIPATE)
-      .then(isParticipating => {
-        console.log(isParticipating);
+    GetStoreData(ONBOARDING_DONE)
+      .then(isOnboarded => {
+        console.log('Participate is ', isOnboarded);
         this.setState({
-          initialRouteName: isParticipating,
+          initialRouteName: isOnboarded,
         });
       })
       .catch(error => console.log(error));

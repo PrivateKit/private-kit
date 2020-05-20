@@ -405,8 +405,16 @@ class LocationTracking extends Component {
     );
   }
 
-  getMayoInfoPressed() {
-    Linking.openURL(languages.t('label.home_mayo_link_URL'));
+  getSafepathsPressed() {
+    if (isPlatformiOS()) {
+      Linking.openURL(languages.t('label.home_safepaths_ios_url'));
+    } else {
+      Linking.openURL(languages.t('label.home_safepaths_android_url'));
+    }
+  }
+
+  getCalculatorPressed() {
+    Linking.openURL(languages.t('label.home_calculator_URL'));
   }
 
   render() {
@@ -424,9 +432,41 @@ class LocationTracking extends Component {
           <View style={styles.contentContainer}>
             {this.getMainText()}
             <Text style={styles.subsubheaderText}>{this.getSubSubText()}</Text>
-            <Text style={styles.subheaderText}>{this.getSubText()}</Text>
+            <Text style={styles.subheaderText}>
+              {this.getSubText()}
+              <Text
+                style={{ fontWeight: 'bold', textDecorationLine: 'underline' }}
+                onPress={() => this.getSafepathsPressed()}>
+                SafePaths
+              </Text>
+            </Text>
             {this.getCTAIfNeeded()}
           </View>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={this.getCalculatorPressed.bind(this)}
+            style={styles.mayoInfoRow}>
+            <View style={styles.mayoInfoContainer}>
+              <Text
+                style={styles.mainMayoHeader}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_calculator_URL'))
+                }>
+                {languages.t('label.home_calculator_link_heading')}
+              </Text>
+              <Text
+                style={styles.mainMayoSubtext}
+                onPress={() =>
+                  Linking.openURL(languages.t('label.home_calculator_URL'))
+                }>
+                {languages.t('label.home_calculator_link_label')}
+              </Text>
+            </View>
+            <View style={styles.arrowContainer}>
+              <Image source={foreArrow} style={this.arrow} />
+            </View>
+          </TouchableOpacity>
         </View>
         {this.getSettings()}
       </ImageBackground>
