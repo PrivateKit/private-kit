@@ -5,3 +5,5 @@ export const MY_UUIDs = 'MY_UUIDs';
 export const CROSSED_PATHS = 'CROSSED_PATHS';
 export const LANG_OVERRIDE = 'LANG_OVERRIDE';
 export const ONBOARDING_DONE = 'ONBOARDING_DONE';
+export const WIFI_LOGGING_FREQUENCY = 1000 * 60 * 2; // 2 minutes
+export const WIFI_DATA = 'WIFI_DATA';

@@ -31,6 +31,7 @@ import licenses from './../assets/LICENSE.json';
 import { SvgXml } from 'react-native-svg';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
+import { WIFI_DATA } from '../constants/storage';
 
 const base64 = RNFetchBlob.base64;
 
@@ -71,11 +72,13 @@ function ExportScreen(props) {
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
+      let WiFiDataArray = await GetStoreData(WIFI_DATA);
+
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
       var options = {};
-      var jsonData = JSON.stringify(locationData);
+      let jsonData = JSON.stringify([locationData, WiFiDataArray]);
       const title = 'PrivateKit.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';

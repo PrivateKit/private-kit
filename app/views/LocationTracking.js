@@ -51,6 +51,7 @@ import StateUnknown from './../assets/svgs/stateUnknown';
 import SettingsGear from './../assets/svgs/settingsGear';
 import fontFamily from '../constants/fonts';
 import { PARTICIPATE, CROSSED_PATHS } from '../constants/storage';
+import WiFiService from '../services/WiFiService';
 
 const StateEnum = {
   UNKNOWN: 0,
@@ -211,6 +212,10 @@ class LocationTracking extends Component {
     this.props.navigation.navigate('OverlapScreen', {});
   }
 
+  wifiSetup() {
+    WiFiService.start();
+  }
+
   willParticipate = () => {
     SetStoreData(PARTICIPATE, 'true').then(() => {
       // Turn of bluetooth for v1
@@ -222,6 +227,7 @@ class LocationTracking extends Component {
     BackgroundGeolocation.checkStatus(({ authorization }) => {
       if (authorization === BackgroundGeolocation.AUTHORIZED) {
         LocationServices.start();
+        this.wifiSetup();
         this.setState({
           isLogging: true,
         });

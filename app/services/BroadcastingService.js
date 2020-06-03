@@ -121,14 +121,14 @@ function saveMyUUID(me) {
 function loadLastUUIDAndBroadcast() {
   GetStoreData(MY_UUIDs, false).then(myUUIDArray => {
     if (!myUUIDArray) {
-      console.log(
+      /* console.log(
         '[Bluetooth]',
         nowStr(),
         myUUIDArray[myUUIDArray.length - 1].uuid,
         'Loading last uuid',
       );
       var lastUUID = myUUIDArray[myUUIDArray.length - 1].uuid;
-      broadcast(lastUUID);
+      broadcast(lastUUID);*/
     } else {
       generateNewUUIDAndBroadcast();
     }
