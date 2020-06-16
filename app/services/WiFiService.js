@@ -14,9 +14,9 @@ export default class WiFiService {
   static logWifiData() {
     // capture data
     console.log('Wifi point logged');
-    WifiManager.loadWifiList().then((result) => {
+    WifiManager.loadWifiList().then(result => {
       // filter data
-      WiFiService.filterWiFiData(result).then((filteredResult) => {
+      WiFiService.filterWiFiData(result).then(filteredResult => {
         // save it in the storage
         WiFiService.storeLocally(filteredResult);
       });
@@ -26,7 +26,7 @@ export default class WiFiService {
   static async filterWiFiData(scanResults) {
     // Remove the keys which are not required
     scanResults = JSON.parse(scanResults);
-    return scanResults.map((wifiAP) => {
+    return scanResults.map(wifiAP => {
       delete wifiAP['capabilities'];
       return wifiAP;
     });
@@ -40,13 +40,7 @@ export default class WiFiService {
   }
 
   static async getParsedDataFromStore() {
-    const data = await GetStoreData(WIFI_DATA);
-
-    if (data) {
-      return JSON.parse(data);
-    } else {
-      return null;
-    }
+    return await GetStoreData(WIFI_DATA, false);
   }
 
   static stop() {
