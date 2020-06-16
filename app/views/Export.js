@@ -31,7 +31,7 @@ import licenses from './../assets/LICENSE.json';
 import { SvgXml } from 'react-native-svg';
 import close from './../assets/svgs/close';
 import exportIcon from './../assets/svgs/export';
-import { WIFI_DATA } from '../constants/storage';
+import WiFiService from '../services/WiFiService';
 
 const base64 = RNFetchBlob.base64;
 
@@ -49,7 +49,7 @@ function ExportScreen(props) {
   useFocusEffect(
     React.useCallback(() => {
       const locationData = new LocationData();
-      locationData.getPointStats().then(pointStats => {
+      locationData.getPointStats().then((pointStats) => {
         setPointStats(pointStats);
         setButtonDisabled(pointStats.pointCount === 0);
       });
@@ -72,7 +72,7 @@ function ExportScreen(props) {
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
-      let WiFiDataArray = await GetStoreData(WIFI_DATA);
+      let WiFiDataArray = await WiFiService.getParsedDataFromStore();
 
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
@@ -85,7 +85,7 @@ function ExportScreen(props) {
       if (isPlatformiOS()) {
         var url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
-          .then(success => {
+          .then((success) => {
             options = {
               activityItemSources: [
                 {
@@ -101,7 +101,7 @@ function ExportScreen(props) {
               ],
             };
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err.message);
           });
       } else {
@@ -115,10 +115,10 @@ function ExportScreen(props) {
         };
       }
       await Share.open(options)
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           console.log(err.message, err.code);
         });

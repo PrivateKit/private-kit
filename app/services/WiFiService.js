@@ -33,14 +33,14 @@ export default class WiFiService {
   }
 
   static async storeLocally(scanResults) {
-    GetStoreData(WIFI_DATA).then(wifiArrayString => {
-      let wifiArray = [];
-      if (wifiArrayString !== null) {
-        wifiArray = JSON.parse(wifiArrayString);
-      }
-      wifiArray.push(scanResults);
-      SetStoreData(WIFI_DATA, wifiArray);
-    });
+    const storedArray = await WiFiService.getParsedDataFromStore();
+    const wifiArray = storedArray || [];
+    wifiArray.push(scanResults);
+    SetStoreData(WIFI_DATA, wifiArray);
+  }
+
+  static async getParsedDataFromStore() {
+    return await GetStoreData(WIFI_DATA, false);
   }
 
   static stop() {
