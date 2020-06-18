@@ -49,7 +49,7 @@ function ExportScreen(props) {
   useFocusEffect(
     React.useCallback(() => {
       const locationData = new LocationData();
-      locationData.getPointStats().then((pointStats) => {
+      locationData.getPointStats().then(pointStats => {
         setPointStats(pointStats);
         setButtonDisabled(pointStats.pointCount === 0);
       });
@@ -72,20 +72,25 @@ function ExportScreen(props) {
   async function onShare() {
     try {
       let locationData = await new LocationData().getLocationData();
-      let WiFiDataArray = await WiFiService.getParsedDataFromStore();
+      let wiFiDataArray = await WiFiService.getParsedDataFromStore();
 
       let nowUTC = new Date().toISOString();
       let unixtimeUTC = Date.parse(nowUTC);
 
       var options = {};
-      let jsonData = JSON.stringify([locationData, WiFiDataArray]);
+
+      let jsonData = JSON.stringify({
+        LOCATION_DATA: locationData,
+        WIFI_DATA: wiFiDataArray,
+      });
+
       const title = 'PrivateKit.json';
       const filename = unixtimeUTC + '.json';
       const message = 'Here is my location log from Private Kit.';
       if (isPlatformiOS()) {
         var url = RNFS.DocumentDirectoryPath + '/' + filename;
         await RNFS.writeFile(url, jsonData, 'utf8')
-          .then((success) => {
+          .then(() => {
             options = {
               activityItemSources: [
                 {
@@ -101,7 +106,7 @@ function ExportScreen(props) {
               ],
             };
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err.message);
           });
       } else {
@@ -115,10 +120,10 @@ function ExportScreen(props) {
         };
       }
       await Share.open(options)
-        .then((res) => {
+        .then(res => {
           console.log(res);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
           console.log(err.message, err.code);
         });
