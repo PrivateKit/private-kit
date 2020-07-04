@@ -128,6 +128,10 @@ class SettingsScreen extends Component {
     this.props.navigation.navigate('LicensesScreen');
   }
 
+  wifiScanningPressed() {
+    this.props.navigation.navigate('WifiScanningScreen');
+  }
+
   testedPositiveButtonPressed() {
     this.props.navigation.navigate('ExportScreen');
   }
@@ -239,6 +243,14 @@ class SettingsScreen extends Component {
 
           <View style={styles.mainContainer}>
             <View style={styles.section}>
+              {this.getSettingRow(
+                'Wifi Scanning',
+                this.wifiScanningPressed,
+                null,
+                null,
+                null,
+              )}
+              <View style={styles.divider} />
               {this.state.isLogging
                 ? this.getLoggingButton(
                     languages.t('label.settings_stop_logging'),
@@ -264,6 +276,7 @@ class SettingsScreen extends Component {
 
           <View style={styles.mainContainer}>
             <View style={styles.section}>
+              <View style={styles.divider} />
               {this.getSettingRow(
                 languages.t('label.choose_provider_title'),
                 this.chooseProviderScreenButtonPressed,

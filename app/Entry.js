@@ -20,6 +20,7 @@ import Onboarding2 from './views/onboarding/Onboarding2';
 import Onboarding5 from './views/onboarding/Onboarding5';
 import AboutScreen from './views/About';
 import ChooseProviderScreen from './views/ChooseProvider';
+import WifiScanningScreen from './views/WifiScanning';
 
 import { GetStoreData, SetStoreData } from './helpers/General';
 import { ONBOARDING_DONE } from './constants/storage';
@@ -137,6 +138,11 @@ class Entry extends Component {
           <Stack.Screen
             name='AboutScreen'
             component={AboutScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='WifiScanningScreen'
+            component={WifiScanningScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
