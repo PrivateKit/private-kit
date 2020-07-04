@@ -51,7 +51,7 @@ function DistanceDataEntry({ scans, setScans }) {
   const [distanceStr, setDistanceStr] = useState('');
 
   function saveScan() {
-    const id = `Location ${scans.length}`;
+    const id = `Location ${scans.length++}`;
     const distance = parseInt(distanceStr);
 
     const scanLocationInfo = { id, distance };
