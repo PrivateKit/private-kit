@@ -5,7 +5,6 @@ import { GetStoreData, SetStoreData } from '../helpers/General';
 export default class WiFiService {
   static async logWifiData(scanLocationInfo) {
     const wifiList = JSON.parse(await WifiManager.loadWifiList());
-    console.log(wifiList);
     const cleanedWifiList = wifiList.map(wifiAP => {
       delete wifiAP['capabilities'];
       return wifiAP;

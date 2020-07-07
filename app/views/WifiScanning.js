@@ -51,14 +51,15 @@ function DistanceDataEntry({ scans, setScans }) {
   const [distanceStr, setDistanceStr] = useState('');
 
   function saveScan() {
-    const id = `Location ${scans.length++}`;
+    const scanNum = scans.length + 1;
+    const id = `Location ${scanNum}`;
     const distance = parseInt(distanceStr);
 
     const scanLocationInfo = { id, distance };
 
     WifiService.logWifiData(scanLocationInfo);
 
-    setScans([...scans, scanLocationInfo]);
+    setScans(scans => [...scans, scanLocationInfo]);
     setDistanceStr('');
   }
 
