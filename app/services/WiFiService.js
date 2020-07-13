@@ -24,4 +24,8 @@ export default class WiFiService {
   static async getParsedDataFromStore() {
     return await GetStoreData(WIFI_DATA, false);
   }
+
+  static async deleteLogs() {
+    await SetStoreData(WIFI_DATA, []);
+  }
 }

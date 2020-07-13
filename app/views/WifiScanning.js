@@ -122,6 +122,11 @@ export default function WifiScanningScreen(props) {
     props.navigation.goBack();
   }
 
+  const clearScans = () => {
+    WifiService.deleteLogs();
+    setScans([]);
+  };
+
   return (
     <NavigationBarWrapper title='Wifi Scanning' onBackPress={backToMain}>
       <ScrollView style={{ paddingHorizontal: 25, flex: 1 }}>
@@ -130,6 +135,13 @@ export default function WifiScanningScreen(props) {
         <DistanceDataEntry scans={scans} setScans={setScans} />
         <View style={styles.divider} />
         <ScanRecords scans={scans} />
+        <View style={{ paddingTop: 25 }}>
+          <Button
+            title='Delete Scan Logs'
+            onPress={clearScans}
+            disabled={scans.length === 0}
+          />
+        </View>
       </ScrollView>
     </NavigationBarWrapper>
   );
