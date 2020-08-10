@@ -48,19 +48,20 @@ function ScanRecords({ scans }) {
 }
 
 function DistanceDataEntry({ scans, setScans }) {
-  const [distanceStr, setDistanceStr] = useState('');
+  const [interval, setInterval] = useState('0');
+  const [curDistance, setCurDistance] = useState('0');
 
   function saveScan() {
     const scanNum = scans.length + 1;
-    const id = `Location ${scanNum}`;
-    const distance = parseInt(distanceStr);
-
-    const scanLocationInfo = { id, distance };
+    const scanLocationInfo = {
+      id: `Location ${scanNum}`,
+      distance: parseInt(curDistance),
+    };
 
     WifiService.logWifiData(scanLocationInfo);
 
     setScans(scans => [...scans, scanLocationInfo]);
-    setDistanceStr('');
+    setCurDistance(curDistance => parseInt(curDistance) + parseInt(interval));
   }
 
   return (
@@ -69,16 +70,43 @@ function DistanceDataEntry({ scans, setScans }) {
         <Text style={styles.header}>Data Entry</Text>
       </View>
 
-      <View style={styles.row}>
-        <TextInput
-          placeholder='Distance (in feet) from WiFi access point'
-          keyboardType={'number-pad'}
-          onChangeText={text => setDistanceStr(text)}
-          value={distanceStr}
-          style={{ width: '75%' }}
-        />
-      </View>
-      <Button title='Perform Scan' onPress={saveScan} disabled={!distanceStr} />
+      {scans.length === 0 ? (
+        <>
+          <View style={{ paddingBottom: 10 }}>
+            <Text>
+              The first scan should be taken directly next to the access point .
+            </Text>
+          </View>
+          <Button title='Perform Scan At Access Point' onPress={saveScan} />
+        </>
+      ) : (
+        <>
+          <View style={styles.row}>
+            <Text>Distance interval (in feet):</Text>
+            <TextInput
+              placeholder='Enter distance'
+              disabled={interval !== ''}
+              keyboardType={'number-pad'}
+              onChangeText={text => {
+                setInterval(text);
+                setCurDistance(text);
+              }}
+              value={interval}
+              style={{ width: '75%' }}
+            />
+          </View>
+
+          <View style={{ paddingVertical: 10 }}>
+            <Text>Next scan distance:</Text>
+            <Text style={{ paddingTop: 10 }}>{curDistance || '0'}ft</Text>
+          </View>
+          <Button
+            title='Perform Scan'
+            onPress={saveScan}
+            disabled={interval === '0' || interval === ''}
+          />
+        </>
+      )}
     </View>
   );
 }
@@ -136,11 +164,7 @@ export default function WifiScanningScreen(props) {
         <View style={styles.divider} />
         <ScanRecords scans={scans} />
         <View style={{ paddingTop: 25 }}>
-          <Button
-            title='Delete Scan Logs'
-            onPress={clearScans}
-            disabled={scans.length === 0}
-          />
+          <Button title='Delete Scan Logs' onPress={clearScans} />
         </View>
       </ScrollView>
     </NavigationBarWrapper>

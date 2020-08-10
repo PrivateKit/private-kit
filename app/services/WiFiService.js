@@ -17,6 +17,7 @@ export default class WiFiService {
   static async storeLocally(scanResults) {
     const storedArray = await WiFiService.getParsedDataFromStore();
     const wifiArray = storedArray || [];
+    console.log(wifiArray);
     wifiArray.push(scanResults);
     SetStoreData(WIFI_DATA, wifiArray);
   }
